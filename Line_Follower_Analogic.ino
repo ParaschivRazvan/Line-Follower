@@ -80,7 +80,7 @@ void loop() {
       
       dW(LEDG, HIGH);
       
-      while(dR(BUTTON1) == PRESS); 
+      while (dR(BUTTON1) == PRESS); 
       
       delay(500); //Wait for hand to get out of the way
       
