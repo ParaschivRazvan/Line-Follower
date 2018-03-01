@@ -93,11 +93,12 @@ void loop() {
   
   if (dR(BUTTON2) == PRESS){              //Start race
       start = 1;
-      while(dR(BUTTON2) == PRESS){
+      
+    while (dR(BUTTON2) == PRESS){
           
           dW(LEDG, millis()%100 < 50);
           
-          if(dR(BUTTON1) == PRESS){      //Cancel race
+          if (dR(BUTTON1) == PRESS){      //Cancel race
               start = 0;              
           }
       }
@@ -108,7 +109,7 @@ void loop() {
           
           delay(200);         //Wait for hand to get out of the way
           
-          while( dR(BUTTON1) == RELEASE && dR(BUTTON2) == RELEASE ){      //Press any button to exit, otherwise race
+          while (dR(BUTTON1) == RELEASE && dR(BUTTON2) == RELEASE ){      //Press any button to exit, otherwise race
               race();
               delay(15);
           }
