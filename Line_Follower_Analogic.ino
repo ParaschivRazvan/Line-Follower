@@ -53,7 +53,7 @@ void setup() {
   
 }
 
-void initialize(){
+void initialize(){ // Intitalize the pins and the min/max arrays
   
   pinMode(BUTTON1, INPUT);
   pinMode(BUTTON2, INPUT);
@@ -131,13 +131,13 @@ void calibrate(int cal_time, int cal_speed, int cal_dir){
     
     dW(LEDG, millis()%100 < 50);        //Blink led
     
-    if (cal_dir == AHEAD_DIR)  motor_speed(cal_speed, cal_speed);
+    if (cal_dir == AHEAD_DIR)  motor_speed(cal_speed, cal_speed);//Move forward
     
-    if (cal_dir == BACKWARDS_DIR)  motor_speed(-cal_speed, -cal_speed);
+    if (cal_dir == BACKWARDS_DIR)  motor_speed(-cal_speed, -cal_speed);//Move backwards
     
   int sens_value[SENSOR_NO];
     
-  for (int i = 0; i < SENSOR_NO; i++){
+  for (int i = 0; i < SENSOR_NO; i++){//Determine the minimum and maximum values of the terain
       
       sens_value[i] = analogRead(SENSOR[i]);
       sens_min[i] = (sens_value[i] < sens_min[i]) ? sens_value[i] : sens_min[i];
@@ -157,7 +157,7 @@ void race(void){
     line_pos = get_line_pos(COLOR,(last_line_pos>0));
         
     float PID_correction = get_PID_correction(line_pos, last_line_pos, KP, KD, KI);
-    float max_correction = SPEED;                   //Can be changed to a lower value in order to limit the correction, needs to be at most SPEED
+    float max_correction = SPEED; //Can be changed to a lower value in order to limit the correction, needs to be at most SPEED
     
     if(PID_correction > 0){
         PID_correction = (PID_correction > max_correction) ? max_correction : PID_correction;
@@ -215,7 +215,7 @@ float get_PID_correction(float line, float last_line, float kp, float kd, float 
 
   return correction;
 }
-
+//Use to adjust motorspeed
 void motor_speed(int m1, int m2) {           //From -1000 to 1000
 
   int pwm1 = map(abs(m1), 0, 1000, 0, 255);
